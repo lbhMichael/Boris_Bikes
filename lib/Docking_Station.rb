@@ -1,10 +1,17 @@
 require_relative 'bike'
 class DockingStation
-  attr_reader :bike
-  def release_bike
-    Bike.new
+  attr_reader :bikes
+  def initialize
+    p '2s'
+    @bikes = Array.new(5) {Bike.new}
   end
+
+  def release_bike
+    fail "No bikes available" unless @bikes.size>0
+    @bikes.pop
+  end
+
   def dock(bike)
-    @bike = bike
+    @bikes.append(bike)
   end
 end
